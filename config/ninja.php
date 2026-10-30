@@ -54,6 +54,8 @@ return [
     'local_download' => env('LOCAL_DOWNLOAD', false),
     'sentry_dsn' => env('SENTRY_LARAVEL_DSN', "https://39389664f3f14969b4c43dadda00a40b@sentry2.invoicing.co/5"),
     'environment' => env('NINJA_ENVIRONMENT', 'selfhost'), // 'hosted', 'development', 'selfhost', 'reseller'
+    'maintenance_mode' => env('NINJA_MAINTENANCE_MODE', false),
+    'maintenance_message' => env('NINJA_MAINTENANCE_MESSAGE', ''),
     'preconfigured_install' => env('PRECONFIGURED_INSTALL', false),
     'update_secret' => env('UPDATE_SECRET', ''),
     'license_key' => env('LICENSE_KEY', false),

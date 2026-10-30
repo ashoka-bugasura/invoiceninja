@@ -180,6 +180,7 @@ Route::group(['middleware' => ['throttle:api', 'token_auth', 'valid_json','local
     Route::get('ping', [PingController::class, 'index'])->name('ping');
     Route::get('health_check', [PingController::class, 'health'])->name('health_check');
     Route::get('version', [PingController::class, 'version'])->name('version');
+    Route::get('maintenance_status', [PingController::class, 'maintenanceStatus'])->name('maintenance_status');
     Route::get('last_error', [PingController::class, 'lastError'])->name('last_error');
 
     Route::get('activities', [ActivityController::class, 'index']);

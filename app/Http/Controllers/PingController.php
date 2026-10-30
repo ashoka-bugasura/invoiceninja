@@ -142,4 +142,34 @@ class PingController extends BaseController
             200
         );
     }
+
+    /**
+     * Get whether planned maintenance is running, so clients can warn users before they lose work.
+     *
+     * @return Response| \Illuminate\Http\JsonResponse
+     *
+     * @OA\Get(
+     *      path="/api/v1/maintenance_status",
+     *      operationId="getMaintenanceStatus",
+     *      tags={"maintenance_status"},
+     *      summary="Get the planned maintenance status",
+     *      description="Get whether planned maintenance is running and the message to show users",
+     *      @OA\Parameter(ref="#/components/parameters/X-Requested-With"),
+     *      @OA\Response(
+     *          response=200,
+     *          description="The maintenance status",
+     *       )
+     *     )
+     */
+    public function maintenanceStatus()
+    {
+        $isMaintenanceMode = (bool) config('ninja.maintenance_mode');
+
+        return response()->json(
+            ['maintenance_mode' => $isMaintenanceMode,
+                'message' => $isMaintenanceMode ? config('ninja.maintenance_message') : '',
+            ],
+            200
+        );
+    }
 }
