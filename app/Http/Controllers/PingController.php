@@ -114,4 +114,32 @@ class PingController extends BaseController
 
         return response()->json(['last_error' => SystemHealth::lastError()], 200);
     }
+
+    /**
+     * Get the app version and whether this install is hosted or self-hosted.
+     *
+     * @return Response| \Illuminate\Http\JsonResponse
+     *
+     * @OA\Get(
+     *      path="/api/v1/version",
+     *      operationId="getVersion",
+     *      tags={"version"},
+     *      summary="Get the app version and hosting mode",
+     *      description="Get the app version and whether this install is hosted or self-hosted",
+     *      @OA\Parameter(ref="#/components/parameters/X-Requested-With"),
+     *      @OA\Response(
+     *          response=200,
+     *          description="The app version and hosting mode",
+     *       )
+     *     )
+     */
+    public function version()
+    {
+        return response()->json(
+            ['app_version' => config('ninja.app_version'),
+                'hosting' => Ninja::isHosted() ? 'hosted' : 'self_hosted',
+            ],
+            200
+        );
+    }
 }

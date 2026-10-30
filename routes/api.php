@@ -179,6 +179,7 @@ Route::group(['middleware' => ['throttle:api', 'token_auth', 'valid_json','local
     Route::post('check_subdomain', [SubdomainController::class, 'index'])->name('check_subdomain');
     Route::get('ping', [PingController::class, 'index'])->name('ping');
     Route::get('health_check', [PingController::class, 'health'])->name('health_check');
+    Route::get('version', [PingController::class, 'version'])->name('version');
     Route::get('last_error', [PingController::class, 'lastError'])->name('last_error');
 
     Route::get('activities', [ActivityController::class, 'index']);
